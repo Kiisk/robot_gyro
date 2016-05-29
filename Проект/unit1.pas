@@ -5,7 +5,7 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, mysql55conn, sqldb, db, FileUtil, Forms, Controls,
+  ShellApi, Classes, SysUtils, mysql55conn, sqldb, db, FileUtil, Forms, Controls,
   Graphics, Dialogs, Menus, StdCtrls, ExtCtrls, DBGrids, ComCtrls, DbCtrls,
   ActnList, ValEdit, Types;
 
@@ -78,7 +78,12 @@ type
     Memo1: TMemo;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
+    MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
+    MenuItem8: TMenuItem;
     MySQL55Connection1: TMySQL55Connection;
     PageControl1: TPageControl;
     Shape1: TShape;
@@ -135,6 +140,7 @@ type
     procedure MenuItem5Click(Sender: TObject);
     procedure MenuItem6Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
+    procedure MenuItem8Click(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
     procedure Shape1ChangeBounds(Sender: TObject);
     procedure Shape2ChangeBounds(Sender: TObject);
@@ -194,20 +200,27 @@ end;
 
 procedure TForm1.MenuItem4Click(Sender: TObject);
 begin
+   ShellExecute(0,nil, PChar('cmd'),PChar('/c start www.github.com/'),nil,0);
 end;
 
 procedure TForm1.MenuItem5Click(Sender: TObject);
 begin
+    ShellExecute(0,nil, PChar('cmd'),PChar('/c start www.gidgoroda.ru/'),nil,0);
 end;
 
 procedure TForm1.MenuItem6Click(Sender: TObject);
 begin
-
+   ShellExecute(0,nil, PChar('cmd'),PChar('/c start www.yandex.ru/maps/11150/glazov/?ll=52.648871%2C58.148292&z=12&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fll%3D52.674184%252C58.140818%26spn%3D0.001%252C0.001%26text%3D%25D0%25A0%25D0%25BE%25D1%2581%25D1%2581%25D0%25B8%25D1%258F%252C%2B%25D0%25A3%25D0%25B4%25D0%25BC%25D1%2583%25D1%2580%25D1%2582%25D1%2581%25D0%25BA%25D0%25B0%25D1%258F%2B%25D0%25A0%25D0%25B5%25D1%2581%25D0%25BF%25D1%2583%25D0%25B1%25D0%25BB%25D0%25B8%25D0%25BA%25D0%25B0%252C%2B%25D0%2593%25D0%25BB%25D0%25B0%25D0%25B7%25D0%25BE%25D0%25B2/'),nil,0);
 end;
 
 procedure TForm1.MenuItem7Click(Sender: TObject);
 begin
   close;
+end;
+
+procedure TForm1.MenuItem8Click(Sender: TObject);
+begin
+  ShellExecute(0,nil, PChar('cmd'),PChar('/c start www.google.ru/maps/@50.9539756,52.2146128,5.25z?hl=ru.ru/'),nil,0);
 end;
 
 procedure TForm1.PageControl1Change(Sender: TObject);
@@ -280,7 +293,7 @@ begin
 
  if k=1 then
   begin
-   Memo1.Lines.LoadFromFile('Число.txt');
+   Memo1.Lines.LoadFromFile('Al.txt');
    Edit6.Text:= memo1.text;
    p:=StrToInt(Edit6.Text);
    p:=p+0;
@@ -288,14 +301,14 @@ begin
    Edit6.Text:= IntToStr(p);
    memo1.text:= Label1.Caption;
    Edit6.Text:= Label1.Caption;
-   assignfile(f,'Число.txt');
+   assignfile(f,'Al.txt');
    rewrite(f);
    write(f,''+ Label1.Caption +'');
    closefile(f);
   end
  else
    begin
-    Memo1.Lines.LoadFromFile('Число.txt');
+    Memo1.Lines.LoadFromFile('Al.txt');
     Edit6.Text:= memo1.text;
     p:=StrToInt(Edit6.Text);
     p:=p+1;
@@ -303,7 +316,7 @@ begin
     Edit6.Text:= IntToStr(p);
     memo1.text:= Label1.Caption;
     Edit6.Text:= Label1.Caption;
-    assignfile(f,'Число.txt');
+    assignfile(f,'Al.txt');
     rewrite(f);
     write(f,''+ Label1.Caption +'');
     closefile(f);
@@ -438,7 +451,7 @@ end;
 procedure TForm1.Button6Click(Sender: TObject);
  var a:integer;  b:string;
 begin
-    Memo1.Lines.LoadFromFile('Число.txt');
+    Memo1.Lines.LoadFromFile('Al.txt');
     Edit6.Text:= memo1.text;
     a:= 47 + strtoint(Edit6.Text);
     b:= inttostr(a);
@@ -470,8 +483,8 @@ MessageDlg('Поля','Поля очищены', mtCustom,[mbOk],0);
 end;
 
 procedure TForm1.Button8Click(Sender: TObject);
-begin
-end;
+ begin
+ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
