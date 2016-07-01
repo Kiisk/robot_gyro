@@ -18,6 +18,7 @@ type
     ComboBox2: TComboBox;
     ComboBox3: TComboBox;
     ComboBox4: TComboBox;
+    ComboBox5: TComboBox;
     DataSource2: TDataSource;
     DBGrid1: TDBGrid;
     Edit1: TEdit;
@@ -31,6 +32,7 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
+    Label8: TLabel;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MySQL56Connection2: TMySQL56Connection;
@@ -85,9 +87,12 @@ end;
 
 procedure TForm3.Button1Click(Sender: TObject);
 begin
+  if (Edit1.text = '') or (Edit2.text = '') or (Edit3.text = '')   then MessageDLG('Заполните все поля!!!', mtError, [mbOk],0)
+  Else
+  begin
 Edit3.Text:=Combobox3.text+'-' +Combobox2.text +'-'+Combobox1.text;
 SQLQuery2.SQL.Clear;
-SQLQuery2.SQL.Add('INSERT INTO klien VALUES(NULL,"'+Edit1.Text+'","'+Edit2.Text+'",(Select ID from disk1 where Name = "'+ Edit4.Text +'"),(Select ID from prodavec where FIO = "'+ComboBox4.Text+'"),"'+Edit3.Text+'","'+Edit3.Text+'", 150 ,500)');
+SQLQuery2.SQL.Add('INSERT INTO klien VALUES(NULL,"'+Edit1.Text+'","'+Edit2.Text+'",(Select ID from disk1 where Name = "'+ Edit4.Text +'" and god ='+ComboBox5.Text+'),(Select ID from prodavec where FIO = "'+ComboBox4.Text+'"),"'+Edit3.Text+'","'+Edit3.Text+'", 150 ,500)');
 SQLQuery2.ExecSQL;
 SQLTransaction2.Commit;
 SQLQuery2.SQL.Clear;
@@ -99,6 +104,7 @@ SQLQuery2.SQL.Add ('Update disk1 SET kolvo = (kolvo-1)  Where Name = "'+Edit4.Te
 SQLQuery2.ExecSQL;
 SQLTransaction2.Commit;
 MessageDLG('Запись добавлена', mtInformation, [mbOk],0);
+end;
 end;
 
 procedure TForm3.Button2ChangeBounds(Sender: TObject);

@@ -1,7 +1,7 @@
 object Form5: TForm5
-  Left = 129
+  Left = 120
   Height = 692
-  Top = 170
+  Top = 210
   Width = 1381
   BorderIcons = []
   BorderStyle = bsToolWindow
@@ -132,28 +132,28 @@ object Form5: TForm5
     Left = 1128
     Height = 28
     Top = 384
-    Width = 200
+    Width = 243
     TabOrder = 6
   end
   object Edit2: TEdit
     Left = 1128
     Height = 28
     Top = 440
-    Width = 200
+    Width = 243
     TabOrder = 7
   end
   object Edit3: TEdit
     Left = 1128
     Height = 28
     Top = 496
-    Width = 200
+    Width = 243
     TabOrder = 8
   end
   object Edit4: TEdit
     Left = 1128
     Height = 28
     Top = 552
-    Width = 200
+    Width = 243
     TabOrder = 9
   end
   object Label1: TLabel
@@ -218,6 +218,15 @@ object Form5: TForm5
     OnClick = Button7Click
     ParentFont = False
     TabOrder = 11
+  end
+  object CheckBox1: TCheckBox
+    Left = 1240
+    Height = 24
+    Top = 336
+    Width = 118
+    Caption = 'Доп. функция'
+    OnChange = CheckBox1Change
+    TabOrder = 12
   end
   object MainMenu1: TMainMenu
     left = 592

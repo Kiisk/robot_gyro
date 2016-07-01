@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `akter` (
   `name` varchar(20) DEFAULT NULL,
   `familia` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы procat.akter: ~20 rows (приблизительно)
 /*!40000 ALTER TABLE `akter` DISABLE KEYS */;
@@ -45,7 +45,8 @@ INSERT INTO `akter` (`ID`, `name`, `familia`) VALUES
 	(17, 'Рони ', 'Блейкли'),
 	(18, 'Роберт', 'Де Ниро'),
 	(19, 'Джейсон', 'Стэйтем'),
-	(20, 'Доминик', 'Пёрселл');
+	(20, 'Доминик', 'Пёрселл'),
+	(21, 'Клинт', 'Иствуд');
 /*!40000 ALTER TABLE `akter` ENABLE KEYS */;
 
 
@@ -60,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `akterfilm` (
   KEY `ID` (`ID`),
   CONSTRAINT `FK_akterfilm_akter` FOREIGN KEY (`IDaktera`) REFERENCES `akter` (`ID`),
   CONSTRAINT `FK_akterfilm_disk1` FOREIGN KEY (`IDfilm`) REFERENCES `disk1` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы procat.akterfilm: ~20 rows (приблизительно)
 /*!40000 ALTER TABLE `akterfilm` DISABLE KEYS */;
@@ -81,10 +82,7 @@ INSERT INTO `akterfilm` (`ID`, `IDaktera`, `IDfilm`) VALUES
 	(17, 14, 4),
 	(18, 15, 4),
 	(19, 16, 6),
-	(20, 15, 6),
-	(21, 18, 54),
-	(22, 19, 54),
-	(23, 20, 54);
+	(20, 15, 6);
 /*!40000 ALTER TABLE `akterfilm` ENABLE KEYS */;
 
 
@@ -95,23 +93,19 @@ CREATE TABLE IF NOT EXISTS `disk1` (
   `god` int(11) DEFAULT NULL,
   `kolvo` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы procat.disk1: ~12 rows (приблизительно)
 /*!40000 ALTER TABLE `disk1` DISABLE KEYS */;
 INSERT INTO `disk1` (`ID`, `Name`, `god`, `kolvo`) VALUES
 	(3, 'Хороший, плохой, злой', 1966, 11),
 	(4, 'Зеленая миля', 1999, 7),
-	(5, 'Корпорация монстров', 2001, 5),
+	(5, 'Корпорация монстров', 2001, 4),
 	(6, 'Кошмар на улице Вязов', 1984, 4),
 	(7, 'Неудержимые 2', 2012, 5),
 	(48, 'Высотка', 2016, 6),
 	(49, 'Запретная зона', 2012, 24),
-	(50, 'Белоснежка и Охотник 2', 2016, 33),
-	(51, '312', 321, 232),
-	(52, '321', 321, 22),
-	(53, 'Bkmz', 231, 314),
-	(54, 'Профессионал', 2011, 11);
+	(50, 'Белоснежка и Охотник 2', 2016, 34);
 /*!40000 ALTER TABLE `disk1` ENABLE KEYS */;
 
 
@@ -140,11 +134,7 @@ INSERT INTO `filmjanr` (`ID`, `film`, `janr`) VALUES
 	(30, 48, 'драма'),
 	(31, 48, 'игра'),
 	(32, 49, 'ужасы'),
-	(33, 50, 'фэнтези'),
-	(34, 51, 'аниме'),
-	(35, 53, 'аниме'),
-	(36, 54, 'боевик'),
-	(37, 54, 'криминал');
+	(33, 50, 'фэнтези');
 /*!40000 ALTER TABLE `filmjanr` ENABLE KEYS */;
 
 
@@ -169,9 +159,7 @@ INSERT INTO `filmrejis` (`ID`, `IDrejis`, `IDfilm`) VALUES
 	(5, 5, 5),
 	(6, 4, 5),
 	(7, 6, 6),
-	(8, 7, 4),
-	(9, 10, 53),
-	(10, 11, 54);
+	(8, 7, 4);
 /*!40000 ALTER TABLE `filmrejis` ENABLE KEYS */;
 
 
@@ -201,11 +189,7 @@ INSERT INTO `filmstrana` (`ID`, `IDfilma`, `Idstrani`) VALUES
 	(22, 48, 'Ирландия'),
 	(23, 48, 'Великобритания '),
 	(24, 49, 'США'),
-	(25, 50, 'США'),
-	(26, 51, 'Австралия'),
-	(27, 53, 'Австралия'),
-	(28, 54, 'Австралия'),
-	(29, 54, 'Великобритания ');
+	(25, 50, 'США');
 /*!40000 ALTER TABLE `filmstrana` ENABLE KEYS */;
 
 
@@ -266,14 +250,11 @@ CREATE TABLE IF NOT EXISTS `klien` (
   KEY `FK_klien_prodavec` (`prodavec`),
   CONSTRAINT `FK_Klien_disk1` FOREIGN KEY (`namefilm`) REFERENCES `disk1` (`ID`),
   CONSTRAINT `FK_klien_prodavec` FOREIGN KEY (`prodavec`) REFERENCES `prodavec` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы procat.klien: ~3 rows (приблизительно)
+-- Дамп данных таблицы procat.klien: ~4 rows (приблизительно)
 /*!40000 ALTER TABLE `klien` DISABLE KEYS */;
 INSERT INTO `klien` (`ID`, `name`, `familia`, `namefilm`, `prodavec`, `datavzyatia`, `datasdachi`, `cenaorendi`, `polnayacena`) VALUES
-	(26, 'wqwq', 'wqwq', 53, 1, '2016-01-01', '2016-01-08', 150, 500),
-	(29, 'wqwq', 'wqwq', 53, 1, '2016-01-01', '2016-01-08', 150, 500),
-	(30, 'wqwq', 'wqwq', 53, 1, '2016-01-01', '2016-01-08', 150, 500),
 	(31, 'qwert', 'w', 4, 1, '2016-01-01', '2016-01-08', 150, 500);
 /*!40000 ALTER TABLE `klien` ENABLE KEYS */;
 

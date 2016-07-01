@@ -1,7 +1,7 @@
 object Form5: TForm5
-  Left = 129
+  Left = 156
   Height = 692
-  Top = 170
+  Top = 214
   Width = 1381
   BorderIcons = []
   BorderStyle = bsToolWindow
@@ -218,6 +218,15 @@ object Form5: TForm5
     OnClick = Button7Click
     ParentFont = False
     TabOrder = 11
+  end
+  object CheckBox1: TCheckBox
+    Left = 1240
+    Height = 24
+    Top = 336
+    Width = 118
+    Caption = 'Доп. функция'
+    OnChange = CheckBox1Change
+    TabOrder = 12
   end
   object MainMenu1: TMainMenu
     left = 592

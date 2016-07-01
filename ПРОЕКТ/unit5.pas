@@ -20,6 +20,7 @@ type
     Button5: TButton;
     Button6: TButton;
     Button7: TButton;
+    CheckBox1: TCheckBox;
     DataSource1: TDataSource;
     DBGrid1: TDBGrid;
     Edit1: TEdit;
@@ -43,6 +44,7 @@ type
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
+    procedure CheckBox1Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
   private
@@ -55,7 +57,7 @@ var
   Form5: TForm5;
 
 implementation
-uses unit2, unit1, unit3;
+uses unit2, unit1, unit3, unit4;
 
 {$R *.lfm}
 
@@ -106,7 +108,7 @@ begin
   SQLQuery1.SQL.Clear;
   SQLQuery1.SQL.Add('Select * from klien');
   SQLQuery1.SQL.Add('Join disk1 ON disk1.ID = klien.namefilm') ;
-  SQLQuery1.SQL.Add('join prodavec ON prodavec.ID = klien.prodavec');
+  SQLQuery1.SQL.Add('Join prodavec ON prodavec.ID = klien.prodavec');
   SQLQuery1.ExecSQL;
   SQLTransaction1.Commit;
   SQLQuery1.Active:=True;
@@ -138,6 +140,13 @@ begin
   Edit2.Text:='';
   Edit3.Text:='';
   Edit4.Text:='';
+end;
+
+procedure TForm5.CheckBox1Change(Sender: TObject);
+begin
+  if CheckBox1.Checked = True then Form4.Button11.Visible:=True
+    else  Form4.Button11.Visible:=false  ;
+
 end;
 
 procedure TForm5.FormCreate(Sender: TObject);

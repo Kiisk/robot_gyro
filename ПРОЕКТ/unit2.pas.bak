@@ -47,14 +47,14 @@ uses unit1;
 procedure TForm2.Button1Click(Sender: TObject);
 begin
   IF (Edit1.Text = '') then  MessageDlg('Ошибка','Заполните поле "Логин"', mtError, [mbOK],0);
-  IF (Edit1.Text = 'admin') and (Edit2.Text = 'admin') then Form5.Show
+  IF (Edit1.Text = 'admin') and (Edit2.Text = 'admin') then Form5.ShowModal
   else MessageDlg('Ошибка','Неверный логин и/или пароль', mtError, [mbOK],0);
 
 end;
 
 procedure TForm2.Button2Click(Sender: TObject);
-begin  ]
-  form1.Show;
+begin
+  form1.ShowModal;
   Form2.Close;
 end;
 

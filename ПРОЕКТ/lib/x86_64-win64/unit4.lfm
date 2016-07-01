@@ -984,7 +984,7 @@ object Form4: TForm4
   object Button7: TButton
     Left = 392
     Height = 48
-    Top = 392
+    Top = 408
     Width = 128
     Caption = '←'
     Font.Height = -33
@@ -1061,7 +1061,7 @@ object Form4: TForm4
   object Button8: TButton
     Left = 392
     Height = 48
-    Top = 448
+    Top = 456
     Width = 128
     Caption = 'Поиск'
     Font.Height = -25
@@ -1203,13 +1203,26 @@ object Form4: TForm4
   object Button10: TButton
     Left = 392
     Height = 48
-    Top = 504
+    Top = 512
     Width = 128
     Caption = 'Очистить поля'
     Font.Style = [fsBold]
     OnClick = Button10Click
     ParentFont = False
     TabOrder = 10
+  end
+  object Button11: TButton
+    Left = 392
+    Height = 49
+    Top = 352
+    Width = 128
+    Caption = 'Удалить'
+    Font.Height = -25
+    Font.Style = [fsBold]
+    OnClick = Button11Click
+    ParentFont = False
+    TabOrder = 11
+    Visible = False
   end
   object DataSource1: TDataSource
     DataSet = SQLQuery1
@@ -1542,5 +1555,17 @@ object Form4: TForm4
     Params = <>
     left = 592
     top = 232
+  end
+  object SQLQuery6: TSQLQuery
+    FieldDefs = <>
+    Database = MySQL56Connection1
+    Transaction = SQLTransaction1
+    Options = []
+    Params = <>
+    left = 592
+  end
+  object DataSource6: TDataSource
+    DataSet = SQLQuery6
+    left = 640
   end
 end

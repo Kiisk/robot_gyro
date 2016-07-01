@@ -16,6 +16,7 @@ type
   TForm4 = class(TForm)
     Button1: TButton;
     Button10: TButton;
+    Button11: TButton;
     Button2: TButton;
     Button3: TButton;
     Button4: TButton;
@@ -34,6 +35,7 @@ type
     DataSource3: TDataSource;
     DataSource4: TDataSource;
     DataSource5: TDataSource;
+    DataSource6: TDataSource;
     DBGrid1: TDBGrid;
     DBGrid2: TDBGrid;
     DBGrid3: TDBGrid;
@@ -81,6 +83,7 @@ type
     SQLQuery3: TSQLQuery;
     SQLQuery4: TSQLQuery;
     SQLQuery5: TSQLQuery;
+    SQLQuery6: TSQLQuery;
     SQLTransaction1: TSQLTransaction;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
@@ -90,6 +93,7 @@ type
     TabSheet6: TTabSheet;
     procedure Bevel1ChangeBounds(Sender: TObject);
     procedure Button10Click(Sender: TObject);
+    procedure Button11Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -137,7 +141,7 @@ var
   Form4: TForm4;
 
 implementation
-uses unit1;
+uses unit1, unit5;
 {$R *.lfm}
 
 { TForm4 }
@@ -238,6 +242,7 @@ begin
 
 procedure TForm4.MenuItem1Click(Sender: TObject);
 begin
+  form1.Show;
   Form4.Close;
 end;
 
@@ -246,6 +251,7 @@ begin
 if  RadioButton10.Checked = True
 then
 begin
+Button11.Enabled:=false;
 RadioButton4.Checked:=True;
 DBGrid1.Visible:=false;
 DBGrid2.Visible:=false;
@@ -266,6 +272,7 @@ begin
    If RadioButton11.Checked = True
    Then
    begin
+   Button11.Enabled:=false;
    DBGrid1.Visible:=false;
 DBGrid2.Visible:=false;
 DBGrid3.Visible:=False;
@@ -320,6 +327,7 @@ begin
   If RadioButton7.Checked = True
   Then
   begin
+   Button11.Enabled:=true;
   DBGrid1.Visible:=True;
   DBGrid2.Visible:=false;
   DBGrid3.Visible:=false;
@@ -340,6 +348,7 @@ begin
   If RadioButton8.Checked = True
   Then
   begin
+  Button11.Enabled:=false;
   DBGrid1.Visible:=false;
   DBGrid4.Visible:=false;
   DBGrid3.Visible:=False;
@@ -360,6 +369,7 @@ begin
   If RadioButton9.Checked = True
   Then
   begin
+  Button11.Enabled:=false;
   RadioButton3.Checked:=True;
  DBGrid1.Visible:=false;
 DBGrid2.Visible:=false;
@@ -665,6 +675,8 @@ if RadioButton9.Checked = true then  Button5.Click;
 
 end;
 
+
+
 procedure TForm4.Bevel1ChangeBounds(Sender: TObject);
 begin
 
@@ -796,6 +808,40 @@ CheckListBox1.Checked[	28	]:=false;
 
   end;
 
+end;
+
+procedure TForm4.Button11Click(Sender: TObject);
+  var b:integer;   a:string;
+begin
+if form5.CheckBox1.Checked = true then Button11.Visible:=True
+else Button11.Visible:=false;
+  b:=DataSource1.DataSet.FieldByName('ID').AsInteger;
+  a:='delete from disk1 where ID ='+IntToStr(b);
+  SQLQuery6.SQL.Clear;
+  SQLQuery6.SQL.Add('delete from akterfilm where IDfilm='+IntToStr(b) +'');
+  SQLQuery6.ExecSQL;
+  SQLTransaction1.Commit;
+  SQLQuery6.SQL.Clear;
+  SQLQuery6.SQL.Add('delete from filmjanr where film='+IntToStr(b) +'');
+  SQLQuery6.ExecSQL;
+  SQLTransaction1.Commit;
+  SQLQuery6.SQL.Clear;
+  SQLQuery6.SQL.Add('delete from filmrejis where IDfilm='+IntToStr(b) +'');
+  SQLQuery6.ExecSQL;
+  SQLTransaction1.Commit;
+  SQLQuery6.SQL.Clear;
+  SQLQuery6.SQL.Add('delete from filmstrana where IDfilma='+IntToStr(b) +'');
+  SQLQuery6.ExecSQL;
+  SQLTransaction1.Commit;
+  SQLQuery6.SQL.Clear;
+  SQLQuery6.SQL.Add('delete from klien where namefilm='+IntToStr(b) +'');
+  SQLQuery6.ExecSQL;
+  SQLTransaction1.Commit;
+  SQLQuery6.SQL.Clear;
+  SQLQuery6.SQL.Add(a);
+  SQLQuery6.ExecSQL;
+  SQLTransaction1.Commit;
+  MessageDlg('Удаление','Запись удалена', mtCustom,[mbOk],0);
 end;
 
 
